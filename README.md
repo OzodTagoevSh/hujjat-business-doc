@@ -1,2 +1,1 @@
-# hujjat-business-doc
-HUJJAT BUSINESS Integratsiyasi uchun Yo'riqnoma
+# HUJJAT BUSINESS Integratsiyasi uchun Yo'riqnoma
