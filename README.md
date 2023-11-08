@@ -28,9 +28,9 @@
 
 ### 1. `/template/create`
 
-##### Shablon yaratish uchun ishlatiladigan metod 
+Shablon yaratish uchun ishlatiladigan metod 
 
-##### CURL orqali so'rovga misol:
+CURL orqali so'rovga misol:
 
 ```
 curl -v -H 'docKey: F32aycX57Lm' -X POST -d '{
@@ -39,15 +39,16 @@ curl -v -H 'docKey: F32aycX57Lm' -X POST -d '{
     "locale": {},
     "template":"PGh0bWw+SGVsbG8gd29ybGQhISE8L2h0bWw+"
 }' https://business.hujjat.uz/template/create
-```
-##### Postman orqali so'rovga misol:
+``` 
+Postman orqali so'rovga misol:
 ```
 
 ```
-##### HTTPda - header `docKey` - foydalanuvchini autentifikatsiya qilish uchun kerak bo'lading maxfiy code
-##### So'rovni tanasi Shablon yaratish uchun kerak bo'ladigan datadan iborat
+HTTPda - header `docKey` - foydalanuvchini autentifikatsiya qilish uchun kerak bo'lading maxfiy code
 
-##### So'rovga Javob: 
+So'rovni tanasi Shablon yaratish uchun kerak bo'ladigan datadan iborat
+
+So'rovga Javob:
 
 ```
 {
@@ -66,16 +67,19 @@ curl -v -H 'docKey: F32aycX57Lm' -X POST -d '{
 }
 ```
 
-##### HTTP 503 - HUJJAT-BUSINESS-SERVER logini ko'ring 
-##### HTTP 400 - So'rov parametrlarida xatolik bor. HUJJAT-BUSINESS-SERVER logini ko'ring 
-##### HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan
-<br/>
+HTTP 503 - HUJJAT-BUSINESS-SERVER logini ko'ring 
+
+HTTP 400 - So'rov parametrlarida xatolik bor. HUJJAT-BUSINESS-SERVER logini ko'ring 
+
+HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan
+
+<br>
 
 ### 2. `/document/create`
 
-##### Document yaratish uchun ishlatiladigan metod
+Document yaratish uchun ishlatiladigan metod
 
-##### CURL orqali so'rovga misol:
+CURL orqali so'rovga misol:
 
 ```
 curl -v -H 'docKey: F32aycX57Lm' -X POST -d '{
@@ -139,14 +143,16 @@ curl -v -H 'docKey: F32aycX57Lm' -X POST -d '{
   }
 }' https://business.hujjat.uz/document/create
 ```
-##### Postman orqali so'rovga misol:
+Postman orqali so'rovga misol:
+
 ```
 
 ```
-##### HTTPda - header `docKey` - foydalanuvchini autentifikatsiya qilish uchun kerak bo'lading maxfiy code
-##### So'rovni tanasi Document yaratish uchun kerak bo'ladigan datadan iborat
+HTTPda - header `docKey` - foydalanuvchini autentifikatsiya qilish uchun kerak bo'lading maxfiy code
 
-##### So'rovga Javob:
+So'rovni tanasi Document yaratish uchun kerak bo'ladigan datadan iborat
+
+So'rovga Javob: 
 
 ```
 {
@@ -161,6 +167,8 @@ curl -v -H 'docKey: F32aycX57Lm' -X POST -d '{
 }
 ```
 
-##### HTTP 503 - HUJJAT-BUSINESS-SERVER logini ko'ring
-##### HTTP 400 - So'rov parametrlarida xatolik bor. HUJJAT-BUSINESS-SERVER logini ko'ring
-##### HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan 
+HTTP 503 - HUJJAT-BUSINESS-SERVER logini ko'ring
+
+HTTP 400 - So'rov parametrlarida xatolik bor. HUJJAT-BUSINESS-SERVER logini ko'ring
+
+HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan
