@@ -155,8 +155,8 @@ HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan.
 
 ### 3. `sign-callback`
 
-Foydalanuvchi hujjat bilan biror amaliyotni bajargandan so'ng, `business.hujjat.uz` hujjat holati haqida ma'lumot olish uchun 
-client tomonidan berilgan `callback-api`ga so'rov jo'natadi, bu metod shu so'rovga javob berish uchun client tomonida yozilgan metoddir.
+Foydalanuvchi hujjat bilan biror amaliyotni bajargandan so'ng, `business.hujjat.uz` hujjat holati o'zgarganligi haqida
+client tomonidan berilgan `callback-api`ga so'rov jo'natadi
 
 `business.hujjat.uz` dan quyidagi ko'rinishda so'rov yuboriladi
 ```
@@ -203,10 +203,10 @@ client tomonidan berilgan `callback-api`ga so'rov jo'natadi, bu metod shu so'rov
 
 ![image8.png](images%2Fimage8.png)
 
-`Sozlamalar` bo'limida `Hujjat parametrlari` qismiga o'tiladi: 
+`Sozlamalar` qismida `Hujjat parametrlari` qismiga o'tiladi: 
 
 ![image9.png](images%2Fimage9.png)
 
-`Qaytarish URL manzili`ga `POST` uchun `callback-url` beriladi va `Authorization header` turi yoziladi: 
+`Qaytarish URL manzili`ga `callback-url` beriladi va `Authorization header` turi yoziladi: 
 
 ![image10.png](images%2Fimage10.png)
