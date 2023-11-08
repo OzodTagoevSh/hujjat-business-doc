@@ -30,20 +30,23 @@
 
 Shablon yaratish uchun ishlatiladigan metod 
 
-CURL orqali so'rovga misol:
+<strong> CURL orqali so'rovga misol: </strong>
 
 ```
-curl -v -H 'docKey: F32aycX57Lm' -X POST -d '{
+curl -v -H 'docKey: 5K2W7Bz5F29' -X POST -d '{
     "type":"ftl",
     "name":"ready.ftl",
     "locale": {},
     "template":"PGh0bWw+SGVsbG8gd29ybGQhISE8L2h0bWw+"
-}' https://business.hujjat.uz/template/create
+}' https://business.hujjat.uz/api/template/create
 ``` 
-Postman orqali so'rovga misol:
-```
+<strong> Postman orqali so'rovga misol: </strong>
 
-```
+![image4.png](images%2Fimage4.png)
+<br>
+<br>
+![image5.png](images%2Fimage5.png)
+
 HTTPda - header `docKey` - foydalanuvchini autentifikatsiya qilish uchun kerak bo'lading maxfiy code
 
 So'rovni tanasi Shablon yaratish uchun kerak bo'ladigan datadan iborat
@@ -79,75 +82,49 @@ HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan
 
 Document yaratish uchun ishlatiladigan metod
 
-CURL orqali so'rovga misol:
+<strong> CURL orqali so'rovga misol: </strong>
 
 ```
-curl -v -H 'docKey: F32aycX57Lm' -X POST -d '{
-  "requestId": "8a654b08-1079-40f8-af32-0f55949ecd52",
-  "oldId": "8a654b08-1079-40f8-af32-0f55949ecd52",
-  "oldPin": "string",
-  "attachments": [
-    {
-      "title": "Hujjat.uz foydalanuvchi yo'riqnoma",
-      "url": "https://hujjat.uz/help/instruction_uz.pdf",
-      "extension": "pdf"
-    }
-  ],
-  "attributes": {
-    "customAttribute": 2
-  },
-  "documentType": "FTL_JSON",
-  "documentParams": {
-    "templateId": "0c8b7c17-bd85-4096-8315-d39bd66f3f4b",
-    "lang": "uz",
-    "model": {
-      "modelField1": "demoField1",
-      "modelField2": "demoField2"
+curl -v -H 'docKey: nXCAnCp2S4V' -X POST -d '{
+    "oldId": null,
+    "oldPin": null,
+    "pdfView": true,
+    "attachments": [],
+    "attributes": {
+        "type": "application-otm"
     },
-    "signTemplateUrls": {
-      "authorization": "Basic aHVqamF0OjZMcFRrcEJ6N3I=",
-      "create": "https://api.hujjat.uz/ru/facturas/5022699",
-      "cancel": null,
-      "reject": null
+    "documentType": "DOC",
+    "documentParams": {
+        "templateId": "daddc220-4769-4313-a695-bd89f0889052",
+        "lang": "uz",
+        "model": {
+            "name": "Namozov"
+        },
+        "signTemplateUrls": {
+            "authorization": null,
+            "create": null,
+            "cancel": null,
+            "reject": null
+        },
+        "script": "replaceSigners();replaceQrCode();replaceModel(payload.model);"
+    },
+    "signType": "EIMZO",
+    "signParams": {
+        "allowLevel": "ALL",
+        "allows": [
+            "50409006590040",
+            "32301953160023"
+        ]
     }
-  },
-  "signType": "EIMZO",
-  "expireAt": "2023-10-08",
-  "signParams": {
-    "allowLevel": "LEVEL",
-    "allows": {
-      "0": [
-        "503554759"
-      ],
-      "1": [
-        "302986679"
-      ],
-      "2": [
-        "515443866"
-      ]
-    }
-  },
-  "additionalDocuments": {
-    "8a654b08-1079-40f8-af32-0f55949ecd52": null
-  },
-  "notice": {
-    "0": [
-      "998991234567"
-    ],
-    "1": [
-      "998909876543"
-    ],
-    "2": [
-      "998977654321"
-    ]
-  }
-}' https://business.hujjat.uz/document/create
+}' https://business.hujjat.uz/api/document/create
 ```
-Postman orqali so'rovga misol:
+<strong> Postman orqali so'rovga misol: </strong>
 
-```
+![image6.png](images%2Fimage6.png)
+<br>
+<br>
+![image7.png](images%2Fimage7.png)
 
-```
 HTTPda - header `docKey` - foydalanuvchini autentifikatsiya qilish uchun kerak bo'lading maxfiy code
 
 So'rovni tanasi Document yaratish uchun kerak bo'ladigan datadan iborat
@@ -170,5 +147,64 @@ So'rovga Javob:
 HTTP 503 - HUJJAT-BUSINESS-SERVER logini ko'ring
 
 HTTP 400 - So'rov parametrlarida xatolik bor. HUJJAT-BUSINESS-SERVER logini ko'ring
+
+HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan
+
+<br>
+
+### 3. `sign-callback`
+
+Foydalanuvchi document bilan biror amaliyotni bajargandan so'ng, `business.hujjat.uz` document event stateni aniqlash uchun 
+client tomonidan berilgan `callback-api`ga so'rov jo'natadi, bu metod shu so'rovga javob berish uchun client tomonida yozilgan metoddir.
+
+CURL orqali so'rovga misol:
+```
+curl -v -X POST -d '{
+  "document": {
+    "id": "dfa74fc7-5cd3-4c36-ab9d-5765b9a0ef77",
+    "pin": "oR92xR98",
+    "requestId": "f95ea9cR-8a3a-42ce-904a-e6c22a7d89e2",
+    "shortId": "r71CfSi5FL3",
+    "clientId": "hujjat",
+    "state": "SIGNED",
+    "attributes": {
+      "type": "social-register-poverty",
+      "...": "..."
+    },
+    "documentLevel": 2,
+    "documentType": "FTL_JSON",
+    "signType": "EIMZO"
+  },
+  "event": {
+    "documentId": "dfa74fc7-5cd3-4c36-ab9d-5765b9a0ef77",
+    "type": "create",
+    "note": "Any text",
+    "fullName": "String",
+    "organizationName": "O`ZBEKISTON RESPUBLIKASI YOSHLAR ISHLARI AGENTLIGI DEHQONOBOD TUMAN BO`LIMI",
+    "eventDetails": {
+      "uid": "32905333333333",
+      "name": "Alisherov Alisher Alisherovich",
+      "orgType": "PHYSICAL",
+      "signerId": "32905333333333",
+      "signMethod": "CREATE",
+      "verifiedAt": 1691563542000,
+      "...": "..."
+    },
+    "state": "ACTIVE",
+    "verifiedAt": "2022-06-07 12:44:06"
+  }
+}' http://client/callback-api
+```
+So'rovni tanasi Document va Eventdan iborat, mana shu ikkisi orqali `document state` aniqlashtiriladi.
+
+So'rovga Javob: 
+```
+{
+    "message": "Success",
+    "status": 200
+}
+```
+
+HTTP 400 - So'rov parametrlarida xatolik bor.
 
 HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan
