@@ -1,4 +1,4 @@
-# HUJJAT-BUSINESS - Integratsiyasi uchun Yo'riqnoma
+# HUJJAT-BUSINESS - Integratsiyasi uchun yo'riqnoma
 
 ## HUJJAT-BUSINESS 
 
@@ -20,9 +20,9 @@
 
 ![image3.png](images%2Fimage3.png)
 
-### Mana shu `API kalitlar` orqali foydalanuvchi `Document`, `Shablon` yaratish va hokazo amaliyotlarni bajara olishi mumkin. 
+### Mana shu `API kalitlar` orqali foydalanuvchi `Hujjat`, `Shablon` yaratish va hokazo amaliyotlarni bajara olishi mumkin. 
 
-## HUJJAT-BUSINESS SERVER
+## HUJJAT-BUSINESS API
 
 ### Quyida ana shu amaliyotlarga qisqacha misollarni ko'rishimiz mumkin:
 
@@ -37,7 +37,7 @@ curl -v -H 'docKey: 5K2W7Bz5F29' -X POST -d '{
     "type":"ftl",
     "name":"ready.ftl",
     "locale": {},
-    "template":"PGh0bWw+SGVsbG8gd29ybGQhISE8L2h0bWw+"
+    "template":"PGh0bWw+SGVsbG8gd29ybGQhISE8L2h0bWw+..."
 }' https://business.hujjat.uz/api/template/create
 ``` 
 <strong> Postman orqali so'rovga misol: </strong>
@@ -47,9 +47,10 @@ curl -v -H 'docKey: 5K2W7Bz5F29' -X POST -d '{
 <br>
 ![image5.png](images%2Fimage5.png)
 
-HTTPda - header `docKey` - foydalanuvchini autentifikatsiya qilish uchun kerak bo'lading maxfiy code
+HTTPda - header `docKey` - foydalanuvchini autentifikatsiya qilish uchun kerak bo'lading maxfiy kod
 
-So'rovni tanasi Shablon yaratish uchun kerak bo'ladigan datadan iborat
+So'rovni tanasi Shablon yaratish uchun kerak bo'ladigan ma'lumotlardan iborat, bunda `type` - hujjatni `doc` yoki `ftl` turini aniqlash uchun,
+`template` - .docx yoki .ftl shablonni `Base64` ko'rinishi.
 
 So'rovga Javob:
 
@@ -70,17 +71,17 @@ So'rovga Javob:
 }
 ```
 
-HTTP 503 - HUJJAT-BUSINESS-SERVER logini ko'ring 
+HTTP 503 - Server bilan muammo yuzaga keldi 
 
-HTTP 400 - So'rov parametrlarida xatolik bor. HUJJAT-BUSINESS-SERVER logini ko'ring 
+HTTP 400 - So'rov parametrlarida xatolik bor. 
 
-HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan
+HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan.
 
 <br>
 
 ### 2. `/document/create`
 
-Document yaratish uchun ishlatiladigan metod
+Hujjat yaratish uchun ishlatiladigan metod
 
 <strong> CURL orqali so'rovga misol: </strong>
 
@@ -125,9 +126,9 @@ curl -v -H 'docKey: nXCAnCp2S4V' -X POST -d '{
 <br>
 ![image7.png](images%2Fimage7.png)
 
-HTTPda - header `docKey` - foydalanuvchini autentifikatsiya qilish uchun kerak bo'lading maxfiy code
+HTTPda - header `docKey` - foydalanuvchini autentifikatsiya qilish uchun kerak bo'lading maxfiy kod
 
-So'rovni tanasi Document yaratish uchun kerak bo'ladigan datadan iborat
+So'rovni tanasi Hujjat yaratish uchun kerak bo'ladigan ma'lumotlardan iborat
 
 So'rovga Javob: 
 
@@ -144,22 +145,22 @@ So'rovga Javob:
 }
 ```
 
-HTTP 503 - HUJJAT-BUSINESS-SERVER logini ko'ring
+HTTP 503 - Server bilan muammo yuzaga keldi
 
-HTTP 400 - So'rov parametrlarida xatolik bor. HUJJAT-BUSINESS-SERVER logini ko'ring
+HTTP 400 - So'rov parametrlarida xatolik bor. 
 
-HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan
+HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan.
 
 <br>
 
 ### 3. `sign-callback`
 
-Foydalanuvchi document bilan biror amaliyotni bajargandan so'ng, `business.hujjat.uz` document event stateni aniqlash uchun 
+Foydalanuvchi hujjat bilan biror amaliyotni bajargandan so'ng, `business.hujjat.uz` hujjat holati haqida ma'lumot olish uchun 
 client tomonidan berilgan `callback-api`ga so'rov jo'natadi, bu metod shu so'rovga javob berish uchun client tomonida yozilgan metoddir.
 
-CURL orqali so'rovga misol:
+`business.hujjat.uz` dan quyidagi ko'rinishda so'rov yuboriladi
 ```
-curl -v -X POST -d '{
+{
   "document": {
     "id": "dfa74fc7-5cd3-4c36-ab9d-5765b9a0ef77",
     "pin": "oR92xR98",
@@ -193,18 +194,19 @@ curl -v -X POST -d '{
     "state": "ACTIVE",
     "verifiedAt": "2022-06-07 12:44:06"
   }
-}' http://client/callback-api
-```
-So'rovni tanasi Document va Eventdan iborat, mana shu ikkisi orqali `document state` aniqlashtiriladi.
-
-So'rovga Javob: 
-```
-{
-    "message": "Success",
-    "status": 200
 }
 ```
 
-HTTP 400 - So'rov parametrlarida xatolik bor.
+### `Callback-URL` qanday qilib yaratishni ko'rib chiqamiz
 
-HTTP 200 - So'rov muvaffaqiyatli amalga oshirilgan
+`bussiness.hujjat.uz` saytiga login qilib, `Tashkilotlar` bo'limiga o'tiladi va tanlangan tashkilotni `Sozlamalar` qismiga o'tiladi: 
+
+![image8.png](images%2Fimage8.png)
+
+`Sozlamalar` bo'limida `Hujjat parametrlari` qismiga o'tiladi: 
+
+![image9.png](images%2Fimage9.png)
+
+`Qaytarish URL manzili`ga `POST` uchun `callback-url` beriladi va `Authorization header` turi yoziladi: 
+
+![image10.png](images%2Fimage10.png)
