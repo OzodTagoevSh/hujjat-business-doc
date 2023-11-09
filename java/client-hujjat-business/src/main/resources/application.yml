@@ -1,0 +1,28 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /client/api
+
+spring:
+  application.name: client-hujjat-business
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/client_business
+    username: postgres
+    password: 7166
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+
+logging:
+  level:
+    root: INFO
+    uz.realsoft.clienthujjatbusiness: DEBUG
+
+project:
+  template-create-url: https://business.hujjat.uz/api/template/create
+  document-create-url: https://business.hujjat.uz/api/document/create
+  doc-key: nXCAnCp2S4V
