@@ -33,7 +33,7 @@ Shablon yaratish uchun ishlatiladigan metod
 <strong> CURL orqali so'rovga misol: </strong>
 
 ```
-curl -v -H 'docKey: 5K2W7Bz5F29' -X POST -d '{
+curl -v -H 'docKey: 5K2W7Bz5F2A' -X POST -d '{
     "type":"ftl",
     "name":"ready.ftl",
     "locale": {},
@@ -86,7 +86,7 @@ Hujjat yaratish uchun ishlatiladigan metod
 <strong> CURL orqali so'rovga misol: </strong>
 
 ```
-curl -v -H 'docKey: nXCAnCp2S4V' -X POST -d '{
+curl -v -H 'docKey: nXCAnCp2S4A' -X POST -d '{
     "oldId": null,
     "oldPin": null,
     "pdfView": true,
